@@ -1,7 +1,6 @@
 #ifndef _MAIN
 #define _MAIN
 #include "scanner.h"
-
 _Bool esComa(char character){
    _Bool a = false;
    if (character == ','){
@@ -9,7 +8,6 @@ _Bool esComa(char character){
    }
    return a;
 }
-
 
 int get_token(){
     char caracter=getchar();
@@ -20,6 +18,7 @@ int get_token(){
         if(caracter == EOF){
            return FDT;
         }else{
+           ungetc(caracter,stdin);
            return CAD;
         }
     }

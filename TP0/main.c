@@ -3,7 +3,6 @@
 
 #include "scanner.h"
 
-
 int main(){
     char cadena[256];
 
@@ -11,12 +10,15 @@ int main(){
 
     int token=-1;
 
+    //char caracter = getchar();
+
     while(token != FDT) {
         token = get_token(cadena);
-        if(token!=-1){
+        if(token!=-1){ //mientras NO sea un espacio
 
-              if(token == SEP){//if(esSeparador(token)) //si es seperador, lo muestra
-                 printf("\n%s %s",salida[token],cadena);
+           if(token == SEP){//if(esSeparador(token)) //si es seperador, lo muestra
+              //cadena =  caracter;
+              printf("\n%s %s",salida[token],",");
            }
            if(token == CAD){
 
@@ -31,17 +33,15 @@ int main(){
               }
               ungetc(caracter,stdin);
               printf("\n%s %s",salida[token],cadena);
-
            }
-
            //esCadena(token,cadena); //si es cadena, la "junta" y muestra
 
           //printf("\n%s %s",salida[token],cadena); //esto lo encapsulo dentro de esSeparador y esCadena
         }
         memset(cadena,'\0',256);
     }
-    printf("Fin De Texto");
+    //printf("\n%s %s");
+    printf("Fin De Texto"); //tengo que ver como formatear esto mejor
     return 0;
 }
-
 #endif
