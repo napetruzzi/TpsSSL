@@ -5,14 +5,18 @@
 #include<ctype.h>
 #include<stdbool.h>
 
+#include <string.h>
+#include <stdlib.h>
+
+
 enum tokens{
-   FDT,
-   SEP,
-   CAD,
+    SEP,
+    CAD,
+    FDT   //capaz lo saaque de aca
 };
+//[SEP,CAD,FTD]
+//   0  1  2
+int get_token(char* buffer);
 
-int get_token(char* cadena);
-
-//[FTD,SEP,CAD]
-
+_Bool esComa(char character);
 #endif

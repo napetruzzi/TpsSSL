@@ -2,52 +2,45 @@
 #define _MAIN
 
 #include "scanner.h"
-
-//cambios por hacer
-//asegurarse de leer archivo
-//esconder logica dentro de get_token
-
 int main(){
 
-   FILE* flujo = fopen ("entrada.txt","rb");
+   //FILE* flujo = fopen ("entrada.txt","rb");
+   char cadena [256]; //32 bytes
 
-   char* salida = {"Separador","Cadena"};
-
-   if(flujo == NULL){
-      perror("Hubo un error al leer el archivo");
-   }
+   char* salida[] = {"Separador","Cadena"}; //no pongo FDT xq no lo usaria
 
    int posicion = 0;
-   char* cadena;
 
+   //if(flujo == NULL){
+   //   perror("Hubo un error al leer el archivo");
+   //}
 
-   char caracter = getchar();
+   int token = -1; //capaz conviene inicializarlo
+   char caracter=getchar();
 
-      while(true){
+      while(token != FDT){
 
-         int algo = get_token(flujo);
+         token = get_token(cadena);
 
-         if (algo == SEP){
-            //devuelde coma
-            printf(salida[0],",");
-
+         if (token == SEP){//devuelde coma
+            printf(salida[token],",");
          }
          else{
-            while(!esComa(caracter)&& isspace(caracter)== 0){//aun hay elementos
+            while(caracter != ','&& isspace(caracter)== 0){//aun hay elementos
                cadena[posicion] =  caracter;
                posicion++;
                caracter = getchar();
             }
-            printf(salida[1],cadena);
+            ungetc(caracter,stdin);
+            printf(salida[token],cadena);
             //acumulo????
          }
+         memset(cadena,'\0',256); //limpio cadena
       }
 
-       fclose(flujo);
+       //fclose(flujo);
 
        printf("Fin De Texto");
        return 0;
-
 }
 #endif
-
