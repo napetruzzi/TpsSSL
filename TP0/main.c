@@ -4,21 +4,20 @@
 #include "scanner.h"
 
 int main(){
-    char cadena[256];
+    char buffer[256];
 
-    char*salida[] = {"Separador","Cadena"};
+    char*nombre[] = {"Separador","Cadena"};
 
     int token=-1;
 
-    //char caracter = getchar();
-
     while(token != FDT) {
-        token = get_token(cadena);
+        token = get_token(buffer);
         if(token!=-1){ //mientras NO sea un espacio
 
            if(token == SEP){//if(esSeparador(token)) //si es seperador, lo muestra
-              //cadena =  caracter;
-              printf("\n%s %s",salida[token],",");
+              //buffer =  caracter;
+              printf("\n%s%s %s",nombre[token],":",",");
+
            }
            if(token == CAD){
 
@@ -26,22 +25,23 @@ int main(){
               char caracter = getchar();
               int posicion = 0;
 
-              while(caracter != ','&& isspace(caracter)== 0){//aun hay elementos
-                 cadena[posicion] =  caracter;
+              while( esCAD(caracter) ){//aun hay elementos
+                 buffer[posicion] =  caracter;
                  posicion++;
                  caracter = getchar();
               }
               ungetc(caracter,stdin);
-              printf("\n%s %s",salida[token],cadena);
-           }
-           //esCadena(token,cadena); //si es cadena, la "junta" y muestra
+              printf("\n%s%s %s",nombre[token],":",buffer);
 
-          //printf("\n%s %s",salida[token],cadena); //esto lo encapsulo dentro de esSeparador y esCadena
+           }
+
+           //esCadena(token,buffer); //si es cadena, la "junta" y muestra
+
+          //printf("\n%s %s",nombre[token],buffer); //esto lo encapsulo dentro de esSeparador y esCadena
         }
-        memset(cadena,'\0',256);
+        memset(buffer,'\0',256);
     }
-    //printf("\n%s %s");
-    printf("Fin De Texto"); //tengo que ver como formatear esto mejor
+    printf("\n%s%s","Fin De Texto",":");
     return 0;
 }
 #endif

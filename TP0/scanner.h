@@ -5,10 +5,6 @@
 #include<ctype.h>
 #include<stdbool.h>
 
-#include <string.h>
-#include <stdlib.h>
-
-
 
 enum tokens{
     SEP,
@@ -19,6 +15,7 @@ enum tokens{
 //   0  1  2
 
 int get_token();
-
 _Bool esComa(char character);
+_Bool esCAD(char character);
+
 #endif
