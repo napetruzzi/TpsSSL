@@ -9,14 +9,16 @@
 #include <stdlib.h>
 
 
+
 enum tokens{
     SEP,
     CAD,
-    FDT   //capaz lo saaque de aca
+    FDT
 };
 //[SEP,CAD,FTD]
 //   0  1  2
-int get_token(char* buffer);
+
+int get_token();
 
 _Bool esComa(char character);
 #endif

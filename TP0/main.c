@@ -2,45 +2,46 @@
 #define _MAIN
 
 #include "scanner.h"
+
+
 int main(){
+    char cadena[256];
 
-   //FILE* flujo = fopen ("entrada.txt","rb");
-   char cadena [256]; //32 bytes
+    char*salida[] = {"Separador","Cadena"};
 
-   char* salida[] = {"Separador","Cadena"}; //no pongo FDT xq no lo usaria
+    int token=-1;
 
-   int posicion = 0;
+    while(token != FDT) {
+        token = get_token(cadena);
+        if(token!=-1){
 
-   //if(flujo == NULL){
-   //   perror("Hubo un error al leer el archivo");
-   //}
+              if(token == SEP){//if(esSeparador(token)) //si es seperador, lo muestra
+                 printf("\n%s %s",salida[token],cadena);
+           }
+           if(token == CAD){
 
-   int token = -1; //capaz conviene inicializarlo
-   char caracter=getchar();
+              //obtenerCadena
+              char caracter = getchar();
+              int posicion = 0;
 
-      while(token != FDT){
+              while(caracter != ','&& isspace(caracter)== 0){//aun hay elementos
+                 cadena[posicion] =  caracter;
+                 posicion++;
+                 caracter = getchar();
+              }
+              ungetc(caracter,stdin);
+              printf("\n%s %s",salida[token],cadena);
 
-         token = get_token(cadena);
+           }
 
-         if (token == SEP){//devuelde coma
-            printf(salida[token],",");
-         }
-         else{
-            while(caracter != ','&& isspace(caracter)== 0){//aun hay elementos
-               cadena[posicion] =  caracter;
-               posicion++;
-               caracter = getchar();
-            }
-            ungetc(caracter,stdin);
-            printf(salida[token],cadena);
-            //acumulo????
-         }
-         memset(cadena,'\0',256); //limpio cadena
-      }
+           //esCadena(token,cadena); //si es cadena, la "junta" y muestra
 
-       //fclose(flujo);
-
-       printf("Fin De Texto");
-       return 0;
+          //printf("\n%s %s",salida[token],cadena); //esto lo encapsulo dentro de esSeparador y esCadena
+        }
+        memset(cadena,'\0',256);
+    }
+    printf("Fin De Texto");
+    return 0;
 }
+
 #endif

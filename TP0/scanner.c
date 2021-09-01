@@ -10,23 +10,19 @@ _Bool esComa(char character){
    return a;
 }
 
-int get_token(char* buffer){ //NO QUIERO QUE PERDURE PERO SINO ME TIRAR ERROR???
-    //int contador = 0;
-    int ret = -1;
+
+int get_token(){
     char caracter=getchar();
-    if(isspace(caracter)==0){
-
-       if(caracter == EOF){
-          ret = FDT;
-       }
-
+    while(isspace(caracter)==0){ //si lo cambio por esComa no anda??????????
         if(caracter == ','){
-           ret = SEP;
+           return SEP;
         }
-        else{
-           ret = CAD;
+        if(caracter == EOF){
+           return FDT;
+        }else{
+           return CAD;
         }
     }
-    return ret;
+    return -1;
 }
 #endif
