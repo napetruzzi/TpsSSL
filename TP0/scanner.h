@@ -4,6 +4,8 @@
 #include<stdio.h>
 #include<ctype.h>
 #include<stdbool.h>
+#include<string.h>
+#include<stdlib.h>
 
 
 enum tokens{
@@ -17,5 +19,6 @@ enum tokens{
 int get_token();
 _Bool esComa(char character);
 _Bool esCAD(char character);
+char* obtenerCadena(char* cadena);
 
 #endif

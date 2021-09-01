@@ -18,19 +18,35 @@ _Bool esCAD(char character){
    return ret;
 }
 
-int get_token(){
-    char caracter=getchar();
+char* obtenerCadena(char* cadena){
 
-    if(caracter == EOF){ //si finaliza
+   char caracter = getchar();
+   int posicion = 0;
+
+   while( esCAD(caracter) ){
+      cadena[posicion] =  caracter;
+      posicion++;
+      caracter = getchar();
+   }
+   ungetc(caracter,stdin);
+
+   return cadena;
+}
+
+
+int get_token(){
+    char character=getchar();
+
+    if(character == EOF){ //si finaliza
        return FDT;
     }
 
-    if(isspace(caracter)==0){
-       if(esComa(caracter)){//si lo cambio por esComa no anda??????????
+    if(isspace(character)==0){
+       if(esComa(character)){
           return SEP;
        }
        else{
-          ungetc(caracter,stdin);
+          ungetc(character,stdin);
           return CAD;
        }
     }
