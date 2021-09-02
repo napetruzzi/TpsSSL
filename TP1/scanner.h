@@ -16,9 +16,9 @@ enum tokens{
 //[SEP,CAD,FTD]
 //   0  1  2
 
-int get_token();
+int get_token(char* buffer);
 _Bool esComa(char character);
 _Bool esCAD(char character);
-void obtenerCadena(char* cadena);
+int obtenerLexema(char* buffer,int token);
 
 #endif

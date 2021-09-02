@@ -18,37 +18,43 @@ _Bool esCAD(char character){
    return ret;
 }
 
-void obtenerCadena(char* cadena){
-
+int obtenerLexema(char* buffer,int token){
    char caracter = getchar();
    int posicion = 0;
 
+   if(esComa(caracter)){
+
+   buffer[posicion] =  caracter;
+   token = SEP;
+   }
+   else{
    while( esCAD(caracter) ){
-      cadena[posicion] =  caracter;
+      buffer[posicion] =  caracter;
       posicion++;
       caracter = getchar();
    }
    ungetc(caracter,stdin);
 
+   token = CAD;
+   }
+   return token;
 }
 
 
-int get_token(){
+int get_token(char* buffer){
     char character=getchar();
+    int ret = -1;
+    memset(buffer,'\0',256);
 
     if(character == EOF){ //si finaliza
        return FDT;
     }
-
     if(isspace(character)==0){
-       if(esComa(character)){
-          return SEP;
-       }
-       else{
-          ungetc(character,stdin);
-          return CAD;
-       }
+
+       ungetc(character,stdin);
+
+       ret = obtenerLexema(buffer,ret);
     }
-    return -1;
+    return ret;
 }
 #endif
