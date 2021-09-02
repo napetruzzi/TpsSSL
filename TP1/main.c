@@ -19,13 +19,12 @@ int main(){
               printf("\n%s%s %s",salida[token],":",",");
            }
            else if(token == CAD){
-
+              memset(cadena,'\0',256);
               obtenerCadena(cadena);
-              printf("\n%s%s %s",salida[token],":",cadena);
+              printf("\n%s %s",salida[token],cadena);
            }
         }
-        memset(cadena,'\0',256);
-    }
+       }
     printf("\n%s%s","Fin De Texto",":");
     return 0;
 }

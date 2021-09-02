@@ -18,7 +18,7 @@ _Bool esCAD(char character){
    return ret;
 }
 
-char* obtenerCadena(char* cadena){
+void obtenerCadena(char* cadena){
 
    char caracter = getchar();
    int posicion = 0;
@@ -30,7 +30,6 @@ char* obtenerCadena(char* cadena){
    }
    ungetc(caracter,stdin);
 
-   return cadena;
 }
 
 

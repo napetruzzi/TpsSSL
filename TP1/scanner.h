@@ -19,6 +19,6 @@ enum tokens{
 int get_token();
 _Bool esComa(char character);
 _Bool esCAD(char character);
-char* obtenerCadena(char* cadena);
+void obtenerCadena(char* cadena);
 
 #endif
